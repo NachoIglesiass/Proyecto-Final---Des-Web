@@ -1,0 +1,23 @@
+{% extends "landing/landing.html" %}
+
+{% block title %} Confirmar eliminación {% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto mt-20 bg-gray-800 p-6 rounded-lg shadow-lg text-white text-center">
+    <h2 class="text-xl mb-4">
+        ¿Estás seguro de que querés eliminar la lista <strong>{{ object.nombre }}</strong>?
+    </h2>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="flex justify-center gap-4 mt-6">
+            <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                Sí, eliminar
+            </button>
+            <a href="{% url 'list' %}" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded">
+                Cancelar
+            </a>
+        </div>
+    </form>
+</div>
+{% endblock %}

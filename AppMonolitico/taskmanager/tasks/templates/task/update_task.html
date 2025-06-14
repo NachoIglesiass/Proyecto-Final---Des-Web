@@ -1,0 +1,77 @@
+{% extends "landing/landing.html" %}
+
+{% block title %} Editar Tarea {% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto mt-20 bg-gray-800 p-6 rounded-lg shadow-lg">
+
+    <h2 class="text-white text-xl mb-4">Editar Tarea</h2>
+
+    <form method="post">
+        {% csrf_token %}
+
+        {% for field in form %}
+            <div class="mb-4">
+                <label for="{{ field.id_for_label }}" class="block mb-2 text-sm font-medium text-gray-300">
+                    {{ field.label }}
+                </label>
+
+                {% if field.field.widget.input_type == 'select' %}
+                    <select 
+                        name="{{ field.name }}" 
+                        id="{{ field.id_for_label }}" 
+                        class="w-full p-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all duration-300 ease-in-out hover:bg-gray-600 hover:border-2 hover:border-green-500 hover:shadow-xl hover:scale-105 focus:scale-105"
+                        {% if field.field.required %} required {% endif %}
+                    >
+                        {% for option in field.field.queryset %}
+                            <option value="{{ option.pk }}" {% if option.pk == field.value %}selected{% endif %}>
+                                {{ option }}
+                            </option>
+                        {% endfor %}
+                    </select>
+
+
+                {% elif field.field.widget.input_type == 'checkbox' %}
+                        <div class="flex items-center bg-gray-700 px-4 py-3 rounded-lg shadow-inner mb-2 transition-all duration-300">
+                            <input 
+                                type="checkbox" 
+                                name="{{ field.name }}" 
+                                id="{{ field.id_for_label }}" 
+                                class="w-5 h-5 text-green-500 bg-gray-600 border-gray-500 rounded"
+                                {% if field.value %} checked {% endif %}
+                            >
+                            <label for="{{ field.id_for_label }}" class="ml-3 text-gray-200 text-sm font-medium select-none">
+                                {{ field.label }}
+                            </label>
+                        </div>
+                        
+
+                {% else %}
+                    <input 
+                        type="{{ field.field.widget.input_type }}"
+                        name="{{ field.name }}"
+                        id="{{ field.id_for_label }}"
+                        class="w-full p-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all duration-300 ease-in-out hover:bg-gray-600 hover:border-2 hover:border-green-500 hover:shadow-xl hover:scale-105 focus:scale-105"
+                        value="{{ field.value|default_if_none:'' }}"
+                        placeholder="{{ field.field.widget.attrs.placeholder|default:'' }}"
+                        {% if field.field.widget.attrs.maxlength %} maxlength="{{ field.field.widget.attrs.maxlength }}" {% endif %}
+                        {% if field.field.required %} required {% endif %}
+                    >
+                {% endif %}
+
+                {% if field.errors %}
+                    <p class="text-red-500 text-sm mt-1">{{ field.errors|striptags }}</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+        <div class="text-center mt-6">
+            <button type="submit"
+                class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none">
+                Guardar Cambios
+            </button>
+        </div>
+
+    </form>
+</div>
+{% endblock %}

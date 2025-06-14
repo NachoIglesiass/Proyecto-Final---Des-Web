@@ -1,0 +1,44 @@
+{% extends "landing/landing.html" %}
+
+{% block title %} Editar Comentario {% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto mt-20 bg-gray-800 p-6 rounded-lg shadow-lg">
+
+    <h2 class="text-white text-xl mb-4">Editar Comentario</h2>
+
+    <form method="post">
+        {% csrf_token %}
+
+        {% for field in form %}
+            <div class="mb-4">
+                <label for="{{ field.id_for_label }}" class="block mb-2 text-sm font-medium text-gray-300">
+                    {{ field.label }}
+                </label>
+                    <input 
+                        type="{{ field.field.widget.input_type }}"
+                        name="{{ field.name }}"
+                        id="{{ field.id_for_label }}"
+                        class="w-full p-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all duration-300 ease-in-out hover:bg-gray-600 hover:border-2 hover:border-green-500 hover:shadow-xl hover:scale-105 focus:scale-105"
+                        value="{{ field.value|default_if_none:'' }}"
+                        placeholder="{{ field.field.widget.attrs.placeholder|default:'' }}"
+                        {% if field.field.widget.attrs.maxlength %} maxlength="{{ field.field.widget.attrs.maxlength }}" {% endif %}
+                        {% if field.field.required %} required {% endif %}
+                    >
+
+                {% if field.errors %}
+                    <p class="text-red-500 text-sm mt-1">{{ field.errors|striptags }}</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+        <div class="text-center mt-6">
+            <button type="submit"
+                class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none">
+                Guardar Cambios
+            </button>
+        </div>
+
+    </form>
+</div>
+{% endblock %}

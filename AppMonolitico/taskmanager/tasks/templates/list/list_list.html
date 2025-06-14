@@ -1,0 +1,56 @@
+{% extends "landing/landing.html" %}
+
+{% block title %} Listar Productos {% endblock %}
+
+{% block content %}
+<div class="flex justify-center items-center min-h-screen bg-gray-900">
+    <div class="w-full max-w-6xl bg-gray-800 p-8 rounded-2xl shadow-2xl">
+        <h2 class="text-2xl font-semibold text-white mb-6 text-center">Listado de Listas</h2>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="
+                    {% if message.tags == 'success' %}
+                        bg-green-500 text-white border border-green-700
+                    {% elif message.tags == 'error' %}
+                        bg-red-500 text-white border border-red-700
+                    {% endif %}
+                    p-4 mb-4 rounded-lg shadow-md">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        {% if lists %}
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white shadow-lg rounded-lg border border-gray-200">
+                    <thead>
+                        <tr class="bg-gray-800 text-white">
+                            <th class="py-4 px-6 text-left text-xl">Nombre</th>
+                            <th class="py-4 px-6 text-center text-xl">Acciones</th>
+
+                        </tr>   
+                    </thead>
+                    <tbody>
+                        {% for list in lists %}
+                            <tr class="border-t border-gray-200 hover:bg-gray-100 transition duration-200">
+                                <td class="py-4 px-6 text-gray-800 text-lg">{{ list.nombre }}</td>
+                                <td class="py-4 px-6 text-center space-x-2">
+                                    <a href="{%url 'lista_delete' list.id %}" class="inline-flex items-center justify-center px-4 py-2 text-white bg-red-600 rounded-lg hover:bg-red-700 transition duration-300 ease-in-out">
+                                        Eliminar
+                                    </a>
+                                    <a href="{%url 'lista_update' list.id %}" class="inline-flex items-center justify-center px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out">
+                                        Modificar
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p class="text-gray-300 text-center text-xl mt-6">No hay listas registradas.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

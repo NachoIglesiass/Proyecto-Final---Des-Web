@@ -1,0 +1,73 @@
+{% extends "landing/landing.html" %}
+
+{% block title %} Tareas {% endblock %}
+
+{% block content %}
+<div class="flex justify-center items-center min-h-screen bg-gray-900">
+    <div class="w-full max-w-7xl mx-auto bg-gray-800 p-14 rounded-2xl shadow-2xl">
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="
+                    {% if message.tags == 'success' %}
+                        bg-green-500 text-white border border-green-700
+                    {% elif message.tags == 'error' %}
+                        bg-red-500 text-white border border-red-700
+                    {% else %}
+                        bg-gray-600 text-white border border-gray-500
+                    {% endif %}
+                    p-4 mb-6 rounded-lg shadow-md text-lg font-medium">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <h1 class="text-white text-3xl font-semibold mb-8">Listas y Tareas</h1>
+
+        {% if listas %}
+            {% for lista in listas %}
+                <div class="mb-10">
+                    <h2 class="text-2xl font-bold text-white mb-4">📋 {{ lista.nombre }}</h2>
+                    {% if lista.tareas.all %}
+                        <ul class="space-y-4">
+                            {% for tarea in lista.tareas.all %}
+                                <li class="bg-gray-700 p-6 rounded-lg shadow hover:bg-gray-600 transition duration-300 flex justify-between items-center">
+                                    <div>
+                                        <h2 class="text-xl font-semibold text-white">{{ tarea.titulo }}</h2>
+                                        <p class="text-gray-300">{{ tarea.descripcion|default:"Sin descripción" }}</p>
+                                        <p class="mt-2">
+                                            {% if tarea.completada %}
+                                                <span class="text-green-400 font-semibold">Completada</span>
+                                            {% else %}
+                                                <span class="text-yellow-400 font-semibold">Pendiente</span>
+                                            {% endif %} 
+                                        </p>
+                                    </div>
+                                    <div class="flex space-x-4">
+                                        <a href="{%url 'task_detail' tarea.pk%}" 
+                                           class="bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg text-white font-semibold transition duration-300">Ver Detalle</a>
+                                        <a href="{% url 'task_update' tarea.pk %}" 
+                                           class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg text-white font-semibold transition duration-300">Editar</a>
+                                        <a href="{% url 'task_delete' tarea.pk %}" 
+                                           class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg text-white font-semibold transition duration-300">Eliminar</a>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p class="text-gray-400 text-lg">No hay tareas en esta lista.</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="text-gray-400 text-lg">No hay listas para mostrar.</p>
+        {% endif %}
+
+        <div class="mt-10">
+            <a href="{% url 'task_create' %}" class="inline-block bg-green-600 hover:bg-green-700 px-6 py-3 rounded-lg font-semibold text-white transition duration-300">
+                Crear nueva tarea
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

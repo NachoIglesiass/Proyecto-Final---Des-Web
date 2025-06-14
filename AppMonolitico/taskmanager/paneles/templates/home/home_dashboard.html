@@ -1,0 +1,65 @@
+{% extends "landing/landing.html" %}
+
+{% block title %} {{title}} {% endblock %}
+
+{% block content %}
+
+<div class="flex justify-center items-center min-h-screen bg-gray-900">
+    <div class="w-full max-w-4xl mx-auto bg-gray-800 p-14 rounded-2xl shadow-2xl">
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="
+                    {% if message.tags == 'success' %}
+                        bg-green-500 text-white border border-green-700
+                    {% elif message.tags == 'error' %}
+                        bg-red-500 text-white border border-red-700
+                    {% else %}
+                        bg-gray-600 text-white border border-gray-500
+                    {% endif %}
+                    p-4 mb-6 rounded-lg shadow-md text-lg font-medium">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <div class="grid gap-8 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
+
+            <!-- Gestión de Tareas -->
+            <div class="bg-gray-800 rounded-xl shadow-lg p-6 hover:bg-gray-700 transition duration-300 ease-in-out transform hover:scale-105">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-tasks text-purple-400 text-3xl mr-4"></i>
+                    <h2 class="text-xl font-semibold text-white">Gestión de Tareas</h2>
+                </div>
+                <p class="text-gray-400 mb-4">
+                    Visualizá, creá y gestioná tus tareas diarias con total control. Establecé prioridades, asigná responsables y realizá seguimiento en tiempo real.
+                </p>
+                <a href="{% url 'task_dashboard' %}" class="block">
+                    <button class="mt-4 w-full bg-blue-600 hover:bg-blue-700 py-2 rounded-lg font-medium flex items-center justify-center transition duration-300 ease-in-out transform hover:scale-105">
+                        <i class="fas fa-tasks mr-2"></i> Ir a Tareas
+                    </button>
+                </a>
+            </div>
+
+            <!-- Gestión de Listas -->
+            <div class="bg-gray-800 rounded-xl shadow-lg p-6 hover:bg-gray-700 transition duration-300 ease-in-out transform hover:scale-105">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-stream text-purple-400 text-3xl mr-4"></i>
+                    <h2 class="text-xl font-semibold text-white">Gestión de Listas</h2>
+                </div>
+                <p class="text-gray-400 mb-4">
+                    Organizá tus tareas agrupándolas en listas personalizadas. Ideal para separar proyectos, áreas de trabajo o categorías de actividades.
+                </p>
+                <a href="{% url 'list_dashboard' %}" class="block">
+                    <button class="mt-4 w-full bg-blue-600 hover:bg-blue-700 py-2 rounded-lg font-medium flex items-center justify-center transition duration-300 ease-in-out transform hover:scale-105">
+                       
+                        <i class="fas fa-stream mr-2"></i> Ir a Listas
+                    </button>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends "landing/landing.html" %}
+
+{% block title %} {{title}} {% endblock %}
+
+{% block content %}
+
+<div class="flex justify-center items-center min-h-screen bg-gray-900">
+    <div class="w-full max-w-7xl mx-auto bg-gray-800 p-14 rounded-2xl shadow-2xl">
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="
+                    {% if message.tags == 'success' %}
+                        bg-green-500 text-white border border-green-700
+                    {% elif message.tags == 'error' %}
+                        bg-red-500 text-white border border-red-700
+                    {% else %}
+                        bg-gray-600 text-white border border-gray-500
+                    {% endif %}
+                    p-4 mb-6 rounded-lg shadow-md text-lg font-medium">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 auto-cols-auto">
+
+            <!-- Crear Lista -->
+            <div class="bg-gray-800 rounded-xl shadow-lg p-6 hover:bg-gray-700 transition duration-300 ease-in-out transform hover:scale-105">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-list-alt text-green-400 text-3xl mr-4"></i>
+                    <h2 class="text-xl font-semibold text-white">Crear Lista</h2>
+                </div>
+                <p class="text-gray-400 mb-4">Creá nuevas listas personalizadas para organizar mejor tus tareas o proyectos.</p>
+                <a href="{% url 'lista_create' %}" class="block">
+                    <button class="mt-4 w-full bg-blue-600 hover:bg-blue-700 py-2 rounded-lg font-medium flex items-center justify-center transition duration-300 ease-in-out transform hover:scale-105">
+                        <i class="fas fa-plus mr-2"></i> Crear Lista
+                    </button>
+                </a>
+            </div>
+
+            <!-- Ver / Editar Listas -->
+            <div class="bg-gray-800 rounded-xl shadow-lg p-6 hover:bg-gray-700 transition duration-300 ease-in-out transform hover:scale-105">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-clipboard-list text-yellow-400 text-3xl mr-4"></i>
+                    <h2 class="text-xl font-semibold text-white">Ver / Editar Listas</h2>
+                </div>
+                <p class="text-gray-400 mb-4">Accedé a todas tus listas existentes, editá nombres o eliminá las que ya no necesites.</p>
+                <a href="{% url 'list' %}" class="block">
+                    <button class="mt-4 w-full bg-blue-600 hover:bg-blue-700 py-2 rounded-lg font-medium flex items-center justify-center transition duration-300 ease-in-out transform hover:scale-105">
+                        <i class="fas fa-eye mr-2"></i> Ver Listas
+                    </button>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
