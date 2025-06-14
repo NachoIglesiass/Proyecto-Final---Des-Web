@@ -56,4 +56,4 @@ En Linux o Mac:
 7. Ejecutar el frontend:
    npm run dev
 
-El frontend quedará disponible en http://localhost:3000
+El frontend quedará disponible en http://localhost:3000 
