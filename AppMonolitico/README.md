@@ -2,7 +2,7 @@
 
 Esta aplicación está desarrollada usando Django con todas las funcionalidades integradas en un solo proyecto.
 
-### Desarrollo paso a paso
+### Desarrollo paso a paso:
 
 - Inicialización del proyecto Django y configuración base en `settings.py`.
 - Creación de la app `tasks` para la gestión principal de tareas.

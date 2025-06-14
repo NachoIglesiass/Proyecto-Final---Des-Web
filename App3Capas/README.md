@@ -2,7 +2,7 @@
 
 Esta aplicación está organizada bajo una arquitectura desacoplada en 3 capas para mejorar escalabilidad y mantenibilidad.
 
-### Desarrollo paso a paso
+### Desarrollo paso a paso:
 
 - Definición de modelos `Lista`, `Tarea`, `Comentario` y `Etiqueta` en la capa de datos (modelo).
 - Creación de serializers con Django REST Framework para cada modelo.
