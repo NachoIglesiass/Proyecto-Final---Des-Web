@@ -31,29 +31,29 @@ Esta aplicación está organizada bajo una arquitectura desacoplada en 3 capas p
 
 2. Crear y activar un entorno virtual para el backend
 En Windows:
-   python -m venv .venv
-   .venv\Scripts\activate
+   -python -m venv .venv
+   -.venv\Scripts\activate
 
 En Linux o Mac:
-   python3 -m venv .venv
-   source .venv/bin/activate
+   -python3 -m venv .venv
+   -source .venv/bin/activate
 
 3. Instalar las dependencias de Python:
-   pip install -r requirements.txt
+   -pip install -r requirements.txt
 
 4. Ejecutar migraciones y levantar el servidor Django REST Framework
-   python manage.py migrate
-   python manage.py runserver
+   -python manage.py migrate
+   -python manage.py runserver
 
-   El backend quedará corriendo por defecto en http://127.0.0.1:8000
+   -El backend quedará corriendo por defecto en http://127.0.0.1:8000
 
 5. Abrir otra terminal y posicionarse en la carpeta del frontend 
-   cd frontend
+   -cd frontend
 
 6. Instalar dependencias del frontend:
-   npm install
+   -npm install
 
 7. Ejecutar el frontend:
-   npm run dev
+   -npm run dev
 
 El frontend quedará disponible en http://localhost:3000 
