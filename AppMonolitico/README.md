@@ -34,17 +34,17 @@ Esta aplicación está desarrollada usando Django con todas las funcionalidades 
 ### Ejecutar la aplicación monolítica
 
 1. Clonar el repositorio
-   git clone https://github.com/NachoIglesiass/Proyecto-Final---Des-Web.git
-   cd Proyecto-Final---Des-Web/App\ Monolitico
+  - git clone https://github.com/NachoIglesiass/Proyecto-Final---Des-Web.git
+  - cd Proyecto-Final---Des-Web/App\ Monolitico
 
 2. Crear y activar un entorno virtual para el backend
 En Windows:
-   python -m venv .venv
-   .venv\Scripts\activate
+  - python -m venv .venv
+  - .venv\Scripts\activate
 
 En Linux o Mac:
-   python3 -m venv .venv
-   source .venv/bin/activate
+  - python3 -m venv .venv
+  - source .venv/bin/activate
    
 3. Instalar dependencias con `pip install -r requirements.txt`
 
