@@ -53,3 +53,7 @@ En Linux o Mac:
 6. Ejecutar el servidor con `python manage.py runserver`
 
 7. Acceder a `http://localhost:8000`
+
+
+
+- Subir Al git : git remote add origin https://github.com/NachoIglesiass/Proyecto-Final---Des-Web
